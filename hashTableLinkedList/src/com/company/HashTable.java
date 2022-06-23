@@ -15,6 +15,8 @@ public class HashTable {
     private int elements;
     // array of linked lists (to store collisions)
     List<LinkedList<Integer>> indices;
+    // size up the hash table when it's half full
+    private double loadFactor = 0.5;
 
     // default constructor, capacity = 4
     public HashTable() {
@@ -42,17 +44,29 @@ public class HashTable {
 
     // adding an element to the hash table
     public void put(int key, int value) {
+        // check if reload needed
+        if (elements >= (capacity * loadFactor)) {
+            reload();
+        }
         // hash the key and use that as an index
         int index = computeHash(key);
         // get the linked list at a specific index
         LinkedList<Integer> list = indices.get(index);
         // add that value to the linked list
         list.add(value);
+        // increment the number of elements up
+        elements++;
+    }
+
+    // double the capacity of the hash table
+    // rehash the contents
+    public void reload() {
+
     }
 
     // print the hash table
     public void print() {
-        
+        // printing stuff
     }
 
     // I know I'm gonna need to empty all the linked lists and collapse the table.

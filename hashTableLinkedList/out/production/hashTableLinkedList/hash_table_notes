@@ -1,0 +1,20 @@
+// Just gonna give some notes on hash tables.
+
+// HASH TABLES
+// I was trying to insert an image into this text file, but I couldn't because apparently text files
+// hash the information to make sure it only contains text...interesting.
+// You can find the beautiful image under src, and it's called meme.jpeg
+
+// FROM CTCI
+// Hash tables are pretty efficient tables for looking stuff up (great data structure to use in interviews).
+// Maps keys to values.
+
+// INTERNET INFO
+// Insertion and search are super fast, even if the table is large.
+
+// HOW TO HASH
+// Take the key value, modulo with table size, use the generated value as the index to store the value
+// Linear Probing - if index value already taken, move to next empty cell one by one
+// There are other variations of probing, but we'll just leave it at that for now.
+
+// Okay, I think that's enough info for now. I'm gonna start programming this :)

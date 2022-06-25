@@ -16,12 +16,13 @@ public class HashTable {
     // array of linked lists (to store collisions)
     List<LinkedList<Node>> indices;
     // size up the hash table when it's half full
-    private double loadFactor = 0.5;
+    final double loadFactor = 0.5;
 
     // default constructor, capacity = 4
     public HashTable() {
         capacity = 4;
-        indices = new ArrayList<LinkedList<Node>>();
+        // initiate the list of indices
+        initiateIndices();
         // no elements
         elements = 0;
     }
@@ -30,8 +31,8 @@ public class HashTable {
     public HashTable(int givenCapacity) {
         // assign the capacity to the given capacity
         capacity = givenCapacity;
-        // create the array list
-        indices = new ArrayList<LinkedList<Node>>();
+        // initiate the lists of indices
+        initiateIndices();
         // no elements
         elements = 0;
     }
@@ -58,8 +59,7 @@ public class HashTable {
         elements++;
     }
 
-    // double the capacity of the hash table
-    // rehash the contents
+    // reload the contents of the hash table
     public void reload() {
         // double the capacity
         capacity = capacity * 2;
@@ -74,8 +74,11 @@ public class HashTable {
             tempNodeList.addAll(list);
             list.clear();
         }
+        // initiate the lists of indices once more
+        initiateIndices();
 
         // add all the nodes in the temporary list to the hash table
+        elements = 0;
         for(Node node : tempNodeList) {
             put(node);
         }
@@ -83,12 +86,37 @@ public class HashTable {
 
     // print the hash table
     public void print() {
-        // printing stuff
+        // index counter
+        int count = 0;
+        for (LinkedList<Node> list : indices) {
+            // print index message
+            System.out.print("index " + count + ": ");
+            // print all nodes in the list at that index
+            for (Node node : list) {
+                System.out.print(node.getValue() + " ");
+            }
+            // newline at end
+            System.out.println();
+            // increment up index count
+            count++;
+        }
     }
 
-    // I know I'm gonna need to empty all the linked lists and collapse the table.
+    // initiates the array of indices with linked lists
+    public void initiateIndices() {
+        indices = new ArrayList<LinkedList<Node>>();
+        for(int i = 0; i < capacity; i++) {
+            indices.add(new LinkedList<Node>());
+        }
+    }
+
+    // function to empty the table and reset the capacity
     public void emptyTable() {
-        // do the emptying
-        // gonna have to iterate through linked list at each index and empty them
+        // reset to default capacity
+        capacity = 4;
+        // set elements to 0
+        elements = 0;
+        // get rid of the previously created linkedlists
+        initiateIndices();
     }
 }

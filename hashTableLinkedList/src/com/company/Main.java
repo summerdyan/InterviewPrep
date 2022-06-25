@@ -10,6 +10,7 @@ import java.util.LinkedList;
 public class Main {
 
     public static void main(String[] args) {
-
+        // creating an instance of the HashTable
+        HashTable ht = new HashTable();
     }
 }

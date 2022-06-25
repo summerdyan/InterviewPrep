@@ -14,14 +14,14 @@ public class HashTable {
     // the number of elements in the hash table
     private int elements;
     // array of linked lists (to store collisions)
-    List<LinkedList<Integer>> indices;
+    List<LinkedList<Node>> indices;
     // size up the hash table when it's half full
     private double loadFactor = 0.5;
 
     // default constructor, capacity = 4
     public HashTable() {
         capacity = 4;
-        indices = new ArrayList<LinkedList<Integer>>();
+        indices = new ArrayList<LinkedList<Node>>();
         // no elements
         elements = 0;
     }
@@ -31,7 +31,7 @@ public class HashTable {
         // assign the capacity to the given capacity
         capacity = givenCapacity;
         // create the array list
-        indices = new ArrayList<LinkedList<Integer>>();
+        indices = new ArrayList<LinkedList<Node>>();
         // no elements
         elements = 0;
     }
@@ -43,17 +43,17 @@ public class HashTable {
     }
 
     // adding an element to the hash table
-    public void put(int key, int value) {
+    public void put(Node node) {
         // check if reload needed
         if (elements >= (capacity * loadFactor)) {
             reload();
         }
         // hash the key and use that as an index
-        int index = computeHash(key);
+        int index = computeHash(node.getKey());
         // get the linked list at a specific index
-        LinkedList<Integer> list = indices.get(index);
+        LinkedList<Node> list = indices.get(index);
         // add that value to the linked list
-        list.add(value);
+        list.add(node);
         // increment the number of elements up
         elements++;
     }
@@ -61,7 +61,24 @@ public class HashTable {
     // double the capacity of the hash table
     // rehash the contents
     public void reload() {
+        // double the capacity
+        capacity = capacity * 2;
 
+        // create a temporary list to store all the previous nodes
+        List<Node> tempNodeList = new ArrayList<Node>();
+
+        // iterate through the linked lists of nodes,
+        // add the nodes to the temporary list,
+        // empty the contents of the linked list
+        for(LinkedList<Node> list : indices) {
+            tempNodeList.addAll(list);
+            list.clear();
+        }
+
+        // add all the nodes in the temporary list to the hash table
+        for(Node node : tempNodeList) {
+            put(node);
+        }
     }
 
     // print the hash table

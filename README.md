@@ -4,3 +4,4 @@ I will be putting my solution to CTCI questions as well as my implementation of 
 Currently looked into/implemented data structures:
 1) Dijkstra's Algorithm
 2) Java Hashtable Class
+3) Personal Implementation of Hash Table w/ Java's LinkedList class

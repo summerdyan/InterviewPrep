@@ -15,3 +15,5 @@ Currently looked into/implemented data structures:
 * Link: https://leetcode.com/problems/single-number/
 7) Solution to Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold (LeetCode)
 * Link: https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/
+8) Solution to Valid Palindrome Problem (LeetCode)
+* Link: https://leetcode.com/problems/valid-palindrome/
